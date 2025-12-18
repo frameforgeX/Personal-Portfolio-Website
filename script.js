@@ -188,4 +188,32 @@
           }, 300);
         });
       }
+
+      // Rotating quotes feature
+      const quotes = [
+        { text: "Why are we here if we can't do great things", author: 'Solomon' },
+        { text: "Code is like humor. When you have to explain it, it's bad.", author: 'Cory House' },
+        { text: "Simplicity is the soul of efficiency.", author: 'Austin Freeman' }
+      ];
+
+      let quoteIndex = 0;
+      const quoteEl = document.getElementById('wisesaying');
+      const authorEl = document.getElementById('quote-author');
+
+      if (quoteEl) {
+        const showQuote = (i) => {
+          quoteEl.classList.add('hidden');
+          setTimeout(() => {
+            quoteEl.textContent = `"${quotes[i].text}"`;
+            if (authorEl) authorEl.textContent = `— ${quotes[i].author}`;
+            quoteEl.classList.remove('hidden');
+          }, 300);
+        };
+
+        showQuote(quoteIndex);
+        setInterval(() => {
+          quoteIndex = (quoteIndex + 1) % quotes.length;
+          showQuote(quoteIndex);
+        }, 5000);
+      }
     });
